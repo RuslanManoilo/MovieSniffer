@@ -1,5 +1,7 @@
-export const Movies = () => {
+export default function Movies() {
     return (
-        <div></div>
+        <div>
+            <h2>This is Movies page</h2>
+        </div>
     )
 }
