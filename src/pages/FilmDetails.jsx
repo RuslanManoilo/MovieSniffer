@@ -14,8 +14,10 @@ export default function FilmDetails() {
                 setFilm(infoFilm);
             } catch (error) {
                 
+            } finally {
+
             }
-        }
+        };
 
         getFilm();
     }, [params.moviesID]);
