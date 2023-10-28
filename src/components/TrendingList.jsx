@@ -1,10 +1,10 @@
-import { MovieDetails } from "./MovieDetails";
+import { MovieShortDetails } from "./MovieShortDetails";
 
 export const TrendingList = ({ films }) => {
     return (
         <ul>
             {films ?
-                films.map(item => (<MovieDetails key={item.id} film={item} />))
+                films.map(item => (<MovieShortDetails key={item.id} film={item} />))
                 : null}
         </ul>
     );

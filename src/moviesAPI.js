@@ -19,3 +19,7 @@ export const fetchSearchFilms = async (query) => {
     return responce.data.results;
 };
 
+export const fetchMovieCredits = async (ID) => {
+    const responce = await axios.get(`movie/${ID}/credits?api_key=${KEY}`);
+    return responce.data.cast;
+};
