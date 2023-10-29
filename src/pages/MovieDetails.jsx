@@ -1,16 +1,16 @@
-import { FilmInfo } from "components/FilmInfo";
+import { MovieInfo } from "components/MovieInfo";
 import { fetchFilmByID } from "moviesAPI";
 import { useEffect, useState } from "react";
 import { Link, Outlet, useParams } from "react-router-dom";
 
 export default function MovieDetails() {
-    const params = useParams();
+    const { movieID } = useParams();
     const [movie, setMovie] = useState();
 
     useEffect(() => {
         async function getFilm() {
             try {
-                const infoMovie = await fetchFilmByID(params.moviesID);
+                const infoMovie = await fetchFilmByID(movieID);
                 setMovie(infoMovie);
             } catch (error) {
                 
@@ -21,11 +21,11 @@ export default function MovieDetails() {
 
         getFilm();
 
-    }, [params.moviesID]);
+    }, [movieID]);
 
     return (
         <div>
-            {movie && <FilmInfo info={movie} />}
+            {movie && <MovieInfo info={movie} />}
 
             <h2>Additional information</h2>
 
@@ -38,5 +38,5 @@ export default function MovieDetails() {
             <Outlet />
 
         </div>
-    )
-}
+    );
+};

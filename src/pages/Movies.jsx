@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { SearchBar } from "components/SearchBar";
 import { fetchSearchFilms } from "moviesAPI";
-import { FilmsList } from "components/FilmsList";
+import { MoviesList } from "components/MoviesList";
 
 export default function Movies() {
     const [movies, setMovies] = useState([]);
@@ -37,7 +37,7 @@ export default function Movies() {
     return (
         <div>
             <SearchBar />
-            {movies.length > 0 && <FilmsList movies={movies} />}
+            {movies.length > 0 && <MoviesList movies={movies} />}
         </div>
     );
 };

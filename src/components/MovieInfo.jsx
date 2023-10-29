@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 import { BackLink } from "./BackLink";
 
-export const FilmInfo = ({
+export const MovieInfo = ({
     info: {
         title,
         poster_path,

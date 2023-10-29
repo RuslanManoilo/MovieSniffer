@@ -1,6 +1,6 @@
 import { MovieShortDetails } from "./MovieShortDetails";
 
-export const FilmsList = ({ movies }) => {
+export const MoviesList = ({ movies }) => {
     return (
         <ul>
             {movies ?
