@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 export const SearchBar = () => {
     const [inputValue, setInputValue] = useState('');
@@ -11,6 +12,11 @@ export const SearchBar = () => {
     
     const handlerSubmit = evt => {
         evt.preventDefault();
+        
+        if (inputValue === '') {
+            toast.error('The search field is empty. Enter text to search.');
+            return;
+        };
 
         searchParams.set('query', evt.target.elements.inputSearch.value);
         setSearchParams(searchParams);
