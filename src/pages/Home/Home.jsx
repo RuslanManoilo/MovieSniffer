@@ -12,11 +12,13 @@ export default function Home() {
     useEffect(() => {
         async function getTrendingMovies() {
             try {
+
                 setLoading(true);
                 setError(false);
 
                 const trendingMovies = await fetchTrendingMovies();
                 setMovies(trendingMovies);
+                
             } catch (error) {
                 setError(true);
             } finally {

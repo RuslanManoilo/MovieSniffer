@@ -1,3 +1,5 @@
+import { Loader } from "components/Loader/Loader";
+import { NotFound } from "components/NotFound/NotFound";
 import { fetchMovieCredits } from "moviesAPI";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -6,6 +8,8 @@ export default function Cast() {
     const { movieID } = useParams();
     const [cast, setCast] = useState([]);
     const [showAll, setShowAll] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(false);
 
     const IMG_URL = 'https://image.tmdb.org/t/p/w500';
     const defaultImg = 'https://static-00.iconduck.com/assets.00/avatar-default-symbolic-icon-960x1024-49eypb0d.png';
@@ -14,13 +18,18 @@ export default function Cast() {
     useEffect(() => {
         async function getMovieCredits() {
             try {
+
+                setLoading(true);
+                setError(false);
+
                 const castMovie = await fetchMovieCredits(movieID);
                 setCast(castMovie);
-            } catch (error) {
-                
-            } finally {
 
-            }
+            } catch (error) {
+                setError(true);
+            } finally {
+                setLoading(false);
+            };
         };
 
         getMovieCredits();
@@ -33,6 +42,9 @@ export default function Cast() {
 
     return (
         <>
+            {loading && <Loader />}
+            {error && <NotFound />}
+
             <ul>
                 {visibleCast.length > 0 && (
                     visibleCast.map(item => (

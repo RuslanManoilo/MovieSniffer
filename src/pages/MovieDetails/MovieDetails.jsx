@@ -15,11 +15,13 @@ export default function MovieDetails() {
     useEffect(() => {
         async function getMovie() {
             try {
+
                 setLoading(true);
                 setError(false);
 
                 const infoMovie = await fetchMovieByID(movieID);
                 setMovie(infoMovie);
+                
             } catch (error) {
                 setError(true);
             } finally {
