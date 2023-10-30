@@ -3,6 +3,8 @@ import "modern-normalize";
 
 export const GlobalStyle = createGlobalStyle`
     body {
+        background-color: #333;
+        color: #fff;
         margin: 0;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
             'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -31,6 +33,11 @@ export const GlobalStyle = createGlobalStyle`
         margin: 0;
         padding: 0;
         list-style: none;
+    }
+
+    a {
+        text-decoration: none;
+        color: #fff;
     }
 
     img {

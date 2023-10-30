@@ -1,10 +1,11 @@
 import { Suspense } from "react";
 import { useEffect, useState } from "react";
-import { Link, Outlet, useParams } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
 import { fetchMovieByID } from "moviesAPI";
 import { MovieInfo } from "components/MovieInfo/MovieInfo";
 import { Loader } from "components/Loader/Loader";
 import { NotFound } from "components/NotFound/NotFound";
+import { AdditionalInfo, ListAdditionalInfo, Title } from "./MovieDetails.styled";
 
 export default function MovieDetails() {
     const { movieID } = useParams();
@@ -41,11 +42,11 @@ export default function MovieDetails() {
             {movie && <MovieInfo info={movie} />}
 
             <div>
-                <h2>Additional information</h2>
-                <ul>
-                    <Link to="cast">Cast</Link>
-                    <Link to="reviews">Reviews</Link>
-                </ul>
+                <Title>Additional information</Title>
+                <ListAdditionalInfo>
+                    <AdditionalInfo to="cast">Cast</AdditionalInfo>
+                    <AdditionalInfo to="reviews">Reviews</AdditionalInfo>
+                </ListAdditionalInfo>
 
                 <Suspense fallback={<Loader />}>
                     <Outlet />

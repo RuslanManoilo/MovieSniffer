@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { toast } from 'react-toastify';
+import { ImSearch } from "react-icons/im";
+import { SearchForm, SearchInput } from "./SearchBar.styled";
+import { MainButton } from "components/BackLink/MainButton";
+
 
 export const SearchBar = () => {
     const [inputValue, setInputValue] = useState('');
@@ -25,14 +29,14 @@ export const SearchBar = () => {
     };
 
     return (
-        <form onSubmit={handlerSubmit}>
-            <input
+        <SearchForm onSubmit={handlerSubmit}>
+            <SearchInput
                 type="text"
                 name="inputSearch"
                 value={inputValue}
                 onChange={handlerChange}
             />
-            <button type="submit">Search</button>
-        </form>
+            <MainButton type="submit"> <ImSearch /> Search</MainButton>
+        </SearchForm>
     );
 };

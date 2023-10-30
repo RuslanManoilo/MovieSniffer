@@ -1,6 +1,7 @@
 import { useLocation } from "react-router-dom";
 import { BackLink } from "../BackLink/BackLink";
 import { useRef } from "react";
+import { MovieCard, MovieDesc, MovieImage, Overview, Subtitle, Title } from "./MovieInfo.styled";
 
 export const MovieInfo = ({
     info: {
@@ -23,19 +24,25 @@ export const MovieInfo = ({
         <>
             <BackLink to={backLinkLocationRef.current} />
 
-            <div>
-                <img src={poster_path ? (IMG_URL + poster_path) : defaultImg} alt={title || name} />
-                <h2>{title || name}</h2>
+            <MovieCard>
+                <MovieImage
+                    src={poster_path ? (IMG_URL + poster_path) : defaultImg}
+                    alt={title || name}
+                />
 
-                <p>Rating: {vote_average}</p>
-                <p>Release date: {release_date}</p>
+                <MovieDesc>
+                    <Title>{title || name}</Title>
 
-                <h3>Overview</h3>
-                <p>{overview}</p>
+                    <p>Rating: {vote_average}</p>
+                    <p>Release date: {release_date}</p>
 
-                <h3>Genres</h3>
-                <p>{genres.map(item => item.name).join(' ')}</p>
-            </div>
+                    <Subtitle>Overview</Subtitle>
+                    <Overview>{overview}</Overview>
+
+                    <Subtitle>Genres</Subtitle>
+                    <p>{genres.map(item => item.name).join(' ')}</p>
+                </MovieDesc>
+            </MovieCard>
         </>
     );
 };
