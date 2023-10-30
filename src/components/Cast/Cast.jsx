@@ -4,7 +4,7 @@ import { NotFound } from "components/NotFound/NotFound";
 import { fetchMovieCredits } from "moviesAPI";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { ActorInfo, ImagesGallery, ItemImage } from "./Cast.styled";
+import { ActorInfo, ImagesGallery, ItemImage, NoCast } from "./Cast.styled";
 import { MainButton } from "components/BackLink/MainButton";
 
 export default function Cast() {
@@ -48,8 +48,8 @@ export default function Cast() {
             {loading && <Loader />}
             {error && <NotFound />}
 
-            <ImagesGallery>
-                {visibleCast.length > 0 && (
+            {<ImagesGallery>
+                {visibleCast.length > 0 ? (
                     visibleCast.map(item => (
                         <GalleryItem key={item.id}>
                             <ItemImage src={item.profile_path ? (IMG_URL + item.profile_path) : defaultImg} alt={item.name} />
@@ -59,8 +59,8 @@ export default function Cast() {
                             </ActorInfo>
                         </GalleryItem>
                     ))
-                )}
-            </ImagesGallery>
+                ) : <NoCast>No info!</NoCast>}
+            </ImagesGallery>}
 
             {cast.length > 16 && (
                 <MainButton onClick={handlerShowAll}>

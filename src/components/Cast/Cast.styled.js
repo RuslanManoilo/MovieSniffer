@@ -25,3 +25,8 @@ export const ActorInfo = styled.div`
     gap: 4px;
     padding: 4px;
 `;
+
+export const NoCast = styled.p`
+    font-weight: bold;
+    margin-left: 16px;
+`;

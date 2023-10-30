@@ -1,6 +1,6 @@
 import { Loader } from "components/Loader/Loader";
+import { MoviesList } from "components/MoviesList/MoviesList";
 import { NotFound } from "components/NotFound/NotFound";
-import { TrendingList } from "components/TrendingList/TrendingList";
 import { fetchTrendingMovies } from "moviesAPI";
 import { useEffect, useState } from "react"
 import { Title } from "./Home.styled";
@@ -38,7 +38,7 @@ export default function Home() {
             {loading && <Loader />}
             {error && <NotFound />}
             
-            <TrendingList moviesList={movies.results} />
+            <MoviesList movies={movies.results} />
         </div>
     );
 };
