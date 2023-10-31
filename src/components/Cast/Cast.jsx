@@ -1,6 +1,5 @@
 import { Loader } from "components/Loader/Loader";
 import { GalleryItem } from "components/MovieShortDetails/MovieShortDetails.styled";
-import { NotFound } from "components/NotFound/NotFound";
 import { fetchMovieCredits } from "moviesAPI";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -12,7 +11,6 @@ export default function Cast() {
     const [cast, setCast] = useState([]);
     const [showAll, setShowAll] = useState(false);
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(false);
 
     const IMG_URL = 'https://image.tmdb.org/t/p/w500';
     const defaultImg = 'https://image.tmdb.org/t/p/w500/esN9CxXr5C4h7YHY3Om1qOexbxq.jpg';
@@ -21,15 +19,13 @@ export default function Cast() {
     useEffect(() => {
         async function getMovieCredits() {
             try {
-
                 setLoading(true);
-                setError(false);
 
                 const castMovie = await fetchMovieCredits(movieID);
                 setCast(castMovie);
 
             } catch (error) {
-                setError(true);
+                console.log(error);
             } finally {
                 setLoading(false);
             };
@@ -46,7 +42,6 @@ export default function Cast() {
     return (
         <>
             {loading && <Loader />}
-            {error && <NotFound />}
 
             {<ImagesGallery>
                 {visibleCast.length > 0 ? (
